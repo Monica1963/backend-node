@@ -13,17 +13,24 @@ dbConnection();
 const cases = require('./routes/cases');
 const auth = require("./routes/auth");
 const purchase = require('./routes/purchase');
+const contact = require('./routes/contact');
+const escalN2app = require('./routes/escalN2app');
+const tool = require('./routes/tools');
+
 
 const app = express();
 
 app.use(compression());
 app.use(bodyParser.json());
 app.use(logger('dev'));
-app.use(express.urlencoded({ extended: false }));
+// app.use(express.urlencoded({ extended: false }));
 //app.use(cookieParser());
 app.use("/auth", auth);
 app.use("/cases", cases);
 app.use("/purchase", securedUser, purchase);
+app.use("/contact", contact);
+app.use("/escalN2app",securedUser, escalN2app);
+app.use("/tool",securedUser, tool);
 
 // app.get("/", (req, res)  => {
 
