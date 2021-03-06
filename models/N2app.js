@@ -1,12 +1,16 @@
 const { Schema, model } = require("mongoose");
 
-const EscalN2appSchema = Schema({
+const N2appSchema = Schema({
   fecha: {
     type: Date,
     required: true,
   },
   segmento: {
     type: String,
+    enum: [
+      'B2B',
+      'B2C'
+    ],
     required: true,
   },
   modulo: {
@@ -19,35 +23,55 @@ const EscalN2appSchema = Schema({
   },
   sectorOrigen: {
     type: String,
+    oneOf: [
+      ' MIS',
+      'TGT',
+      'NOVUM'
+    ],
     required: true,
   },
   incNovum: {
     type: String,
     required: false,
+    default: 'NA'
   },
   incRegional: {
     type: String,
     required: false,
+    default: 'NA'
   },
   evento: {
-    type: Boolean,
+    type: String,
     default: false,
+    default: 'NA'
   },
   grupoResponsable: {
     type: String,
     required: true,
+    oneOf: [
+      'NOVUM',
+      'PLAT_SVA',
+      'PLAT_CLOUD',
+      'DOX',
+      'UX',
+      'IDP',
+      'MC'
+    ],
   },
-  proveedor: {
-    type: String,
-    required: true,
-  },
-  resolucion: {
+  comentarios: {
     type: String,
     default: '',
   },
   status: {
     type: String,
-    default: "pendiente grupo responsable",
+    neOf: [
+      'Pendiente',
+      'Resuelto',
+      'Cancelado',
+      'Mal Resuelto',
+      'Resuelto?'
+    ],
+    default: "Pendiente grupo responsable",
   },
   fechaCierre: {
     type: Date,
@@ -68,4 +92,4 @@ const EscalN2appSchema = Schema({
   },
 });
 
-module.exports = model("escalN2app", EscalN2appSchema);
+module.exports = model("N2app", N2appSchema);

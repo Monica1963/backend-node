@@ -1,10 +1,10 @@
 
-const EscalN2app = require('../models/EscalamientoN2app');
+const N2app = require('../models/N2app');
 
 
 const create = async (req, res) => {
     try {
-     const escalamiento = new EscalN2app(req.body);
+     const escalamiento = new N2app(req.body);
      escalamiento.users = req.id; // global reference for user id
        const data = await escalamiento.save();
        res.status(201).json({ message: "nuevo escalamiento", data });

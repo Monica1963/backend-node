@@ -14,8 +14,9 @@ const cases = require('./routes/cases');
 const auth = require("./routes/auth");
 const purchase = require('./routes/purchase');
 const contact = require('./routes/contact');
-const escalN2app = require('./routes/escalN2app');
+const n2app = require('./routes/n2app');
 const tool = require('./routes/tools');
+const {readMyFile, readbyline, ExcelAJSON} = require('./utils/fs');
 
 
 const app = express();
@@ -29,11 +30,10 @@ app.use("/auth", auth);
 app.use("/cases", cases);
 app.use("/purchase", securedUser, purchase);
 app.use("/contact", contact);
-app.use("/escalN2app",securedUser, escalN2app);
+app.use("/n2app",securedUser, n2app);
 app.use("/tool",securedUser, tool);
 
 // app.get("/", (req, res)  => {
-
 //     console.log("Hiiiii");
 //     res.sendStatus(200);
 // })
@@ -52,4 +52,7 @@ app.use("/tool",securedUser, tool);
 // });
 
 app.listen(3000);
+// readMyFile();
+// readbyline();
+ExcelAJSON();
 
